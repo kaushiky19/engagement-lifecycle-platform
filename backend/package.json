@@ -1,0 +1,21 @@
+{
+  "name": "engagement-lifecycle-backend",
+  "private": true,
+  "version": "1.0.0",
+  "main": "dist/functions.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "func start",
+    "seed": "tsx src/seed.ts"
+  },
+  "dependencies": {
+    "@azure/data-tables": "^13.3.0",
+    "@azure/functions": "^4.7.2",
+    "@azure/identity": "^4.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.0",
+    "tsx": "^4.19.4",
+    "typescript": "^5.9.2"
+  }
+}
