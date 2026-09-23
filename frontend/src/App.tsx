@@ -33,6 +33,8 @@ const stageLabels: Record<StageKey, string> = {
   RENEWAL: "Renewal",
 };
 
+//
+
 const stageOrder = Object.keys(stageLabels) as StageKey[];
 
 async function getToken(instance: ReturnType<typeof useMsal>["instance"]): Promise<string | undefined> {
