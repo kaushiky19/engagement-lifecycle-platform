@@ -2,7 +2,7 @@ import { TableClient, odata } from "@azure/data-tables";
 import { DefaultAzureCredential } from "@azure/identity";
 import type { Engagement, StageKey, StageStatus } from "./types";
 
-const connectionString = process.env.STORAGE_CONNECTION_STRING || process.env.AzureWebJobsStorage;
+const connectionString = process.env.STORAGE_CONNECTION_STRING;
 const accountUrl = process.env.STORAGE_ACCOUNT_URL;
 
 function client(tableName: string): TableClient {
@@ -120,6 +120,7 @@ export async function upsertStage(
   if (status === "IN_PROGRESS") entity.startedAt = now;
   if (status === "COMPLETED") entity.completedAt = now;
 
+//@ts-ignore
   await client("EngagementStages").upsertEntity(entity, "Merge");
   return entity;
 }

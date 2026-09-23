@@ -35,11 +35,12 @@ const stageLabels: Record<StageKey, string> = {
 
 const stageOrder = Object.keys(stageLabels) as StageKey[];
 
-function getToken(instance: ReturnType<typeof useMsal>["instance"]) {
+async function getToken(instance: ReturnType<typeof useMsal>["instance"]): Promise<string | undefined> {
   if (isDemoMode) return undefined;
   const account = instance.getActiveAccount() ?? instance.getAllAccounts()[0];
   if (!account) return undefined;
-  return instance.acquireTokenSilent({ ...loginRequest, account }).then((r) => r.accessToken);
+  const result = await instance.acquireTokenSilent({ ...loginRequest, account });
+  return result.accessToken;
 }
 
 function App() {
@@ -336,7 +337,7 @@ function EngagementDetails() {
 
   if (!engagement) return <div className="card">Engagement not found.</div>;
 
-  const stages = engagement.stages?.length
+    const stages: EngagementStage[] = engagement.stages?.length
     ? engagement.stages
     : stageOrder.map((key) => ({
         stageKey: key,
@@ -479,7 +480,7 @@ function SimplePage({ title }: { title: string }) {
 
 declare global {
   interface Window {
-    msalInstanceForApp: ReturnType<typeof import("@azure/msal-browser").PublicClientApplication>;
+        msalInstanceForApp: import("@azure/msal-browser").PublicClientApplication;
   }
 }
 
