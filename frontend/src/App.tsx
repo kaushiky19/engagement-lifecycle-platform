@@ -33,7 +33,7 @@ const stageLabels: Record<StageKey, string> = {
   RENEWAL: "Renewal",
 };
 
-//stage
+//
 
 const stageOrder = Object.keys(stageLabels) as StageKey[];
 
