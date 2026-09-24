@@ -152,7 +152,7 @@ RENEWAL
 ## Demo mode
 
 If `VITE_ENABLE_DEMO_MODE` is missing or set to anything other than `false`, the frontend runs in demo mode.
-This is intentional so the UI can be deployed before Entra is configured.
+This is intentional so the UI can be deployed before Entra is configured
 
 Set:
 VITE_ENABLE_DEMO_MODE=false
